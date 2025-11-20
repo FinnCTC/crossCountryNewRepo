@@ -1,0 +1,209 @@
+[gd_scene load_steps=29 format=3 uid="uid://cgsd6gur8xyj1"]
+
+[ext_resource type="Script" uid="uid://btwu3ai0n700n" path="res://scenes/player/player.gd" id="1_4flbx"]
+[ext_resource type="Shader" uid="uid://dbfj1ev4ty42n" path="res://shaders/PostProcess.gdshader" id="2_dovo2"]
+[ext_resource type="ArrayMesh" uid="uid://d0kj0ubngvq0c" path="res://models/keishi.res" id="2_gx1jg"]
+[ext_resource type="Material" uid="uid://rierpc3tnyjl" path="res://shaders/animatedMat.tres" id="3_ugbui"]
+[ext_resource type="Animation" uid="uid://c4cg2rgpgdaid" path="res://models/Anims/keishi/ANIM_K_Glide.res" id="4_fcs02"]
+[ext_resource type="Animation" uid="uid://byeb2500e5psy" path="res://models/Anims/keishi/ANIM_K_Glide_END.res" id="5_myrg7"]
+[ext_resource type="Animation" uid="uid://bkc6nrnsuhneb" path="res://models/Anims/keishi/ANIM_K_Glide_START.res" id="6_kvlxm"]
+[ext_resource type="Animation" uid="uid://bxxyv3ecxy33y" path="res://models/Anims/keishi/ANIM_K_Idle.res" id="7_uf5tr"]
+[ext_resource type="Animation" uid="uid://mcw4b5tf8lk2" path="res://models/Anims/keishi/ANIM_K_Jump.res" id="8_lgqa7"]
+[ext_resource type="Animation" uid="uid://bb6dda4amdbpe" path="res://models/Anims/keishi/ANIM_K_Land.res" id="9_8ydkj"]
+[ext_resource type="Animation" uid="uid://b4lj2rutyajqm" path="res://models/Anims/keishi/ANIM_K_Run.res" id="10_3j4b4"]
+[ext_resource type="Animation" uid="uid://bt2e6x4yn88dn" path="res://models/Anims/keishi/ANIM_K_Run_START.res" id="11_yj68g"]
+[ext_resource type="Animation" uid="uid://bpq75lmyft6m2" path="res://models/Anims/keishi/ANIM_K_Run_END.res" id="12_ioxgp"]
+
+[sub_resource type="Skin" id="Skin_qt0k6"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"Foot.r"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, -2.0938395e-16, 6.4830516e-18, 0, -0.030947676, -0.999521, 2.0948428e-16, 0.99952096, -0.030947676, 0.50827473, 0.12588586, 4.521364)
+bind/1/name = &"Foot.l"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 2.0938395e-16, -6.4830516e-18, 0, -0.030947676, -0.999521, -2.0948428e-16, 0.99952096, -0.030947676, -0.50827473, 0.12588586, 4.521364)
+bind/2/name = &"Bone"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.418485, 0)
+
+[sub_resource type="Animation" id="Animation_gx1jg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Cylinder:blend_shapes/Open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_60l7h"]
+_data = {
+&"Anim_Glide": ExtResource("4_fcs02"),
+&"Anim_Glide_End": ExtResource("5_myrg7"),
+&"Anim_Glide_Start": ExtResource("6_kvlxm"),
+&"Anim_Idle": ExtResource("7_uf5tr"),
+&"Anim_Jump": ExtResource("8_lgqa7"),
+&"Anim_Land": ExtResource("9_8ydkj"),
+&"Anim_Run": ExtResource("10_3j4b4"),
+&"Anim_Start_Run": ExtResource("11_yj68g"),
+&"Anim_Stop_Run": ExtResource("12_ioxgp"),
+&"RESET": SubResource("Animation_gx1jg")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gx1jg"]
+animation = &"Anim_Glide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f7pq1"]
+animation = &"Anim_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3fx1t"]
+animation = &"Anim_Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tqfp"]
+animation = &"Anim_Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugbui"]
+animation = &"Anim_Glide_Start"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fcs02"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gx1jg"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gx1jg"]
+xfade_time = 0.5
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Glide"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wcoht"]
+graph_offset = Vector2(-322.40845, 63.05255)
+nodes/output/position = Vector2(540, 60)
+nodes/ANIM_Idle/node = SubResource("AnimationNodeAnimation_f7pq1")
+nodes/ANIM_Idle/position = Vector2(-360, 120)
+nodes/ANIM_Run/node = SubResource("AnimationNodeAnimation_7tqfp")
+nodes/ANIM_Run/position = Vector2(-360, 300)
+nodes/ANIM_Jump/node = SubResource("AnimationNodeAnimation_3fx1t")
+nodes/ANIM_Jump/position = Vector2(80, 520)
+nodes/Transition/node = SubResource("AnimationNodeTransition_gx1jg")
+nodes/Transition/position = Vector2(-100, 100)
+nodes/Jump/node = SubResource("AnimationNodeOneShot_gx1jg")
+nodes/Jump/position = Vector2(200, 80)
+nodes/ANIM_Glide/node = SubResource("AnimationNodeAnimation_gx1jg")
+nodes/ANIM_Glide/position = Vector2(-360, 480)
+nodes/GlideSTART/node = SubResource("AnimationNodeOneShot_fcs02")
+nodes/GlideSTART/position = Vector2(380, 60)
+nodes/ANIM_S_Glide/node = SubResource("AnimationNodeAnimation_ugbui")
+nodes/ANIM_S_Glide/position = Vector2(260, 520)
+node_connections = [&"output", 0, &"GlideSTART", &"Transition", 0, &"ANIM_Idle", &"Transition", 1, &"ANIM_Run", &"Transition", 2, &"ANIM_Glide", &"Jump", 0, &"Transition", &"Jump", 1, &"ANIM_Jump", &"GlideSTART", 0, &"Jump", &"GlideSTART", 1, &"ANIM_S_Glide"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gmlin"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
+render_priority = 0
+shader = ExtResource("2_dovo2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gmlin"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.9998409, 0, -0.01783632, 0, 1, 0, 0.01783632, 0, 0.9998409, 0, 0, 0)
+script = ExtResource("1_4flbx")
+mouse_sensitivity = 0.001
+movement_speed = 4
+max_movement_speed = 6
+acceleration = 0.8
+gravity = 0.5
+
+[node name="KEISHI_WOMats" type="Node3D" parent="."]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.0048284535, 1.3738425, 0.019364595)
+
+[node name="Armature" type="Node3D" parent="KEISHI_WOMats"]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="KEISHI_WOMats/Armature"]
+bones/0/name = "Foot.r"
+bones/0/parent = -1
+bones/0/rest = Transform3D(0.9999995, 0.0009669074, 0.00018588948, -0.00016711028, -0.019385932, 0.999812, 0.00097032933, -0.9998116, -0.019385695, -0.50827473, -4.5153027, 0.26575127)
+bones/0/enabled = true
+bones/0/position = Vector3(-0.50827473, -4.5153027, 0.26575127)
+bones/0/rotation = Quaternion(-0.7139277, -0.0002800694, -0.0004048795, 0.7002193)
+bones/0/scale = Vector3(1, 1, 0.99999994)
+bones/1/name = "Foot.l"
+bones/1/parent = -1
+bones/1/rest = Transform3D(1, -1.323489e-23, -2.094843e-16, 2.0938394e-16, -0.030947564, 0.99952096, -6.4830512e-18, -0.999521, -0.030947566, 0.50827473, -4.5153027, 0.26575127)
+bones/1/enabled = true
+bones/1/position = Vector3(0.50827473, -4.5153027, 0.26575127)
+bones/1/rotation = Quaternion(-0.717965, -7.290882e-17, 7.5201206e-17, 0.6960792)
+bones/1/scale = Vector3(1, 1, 0.99999994)
+bones/2/name = "Bone"
+bones/2/parent = -1
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5887048, 0)
+bones/2/enabled = true
+bones/2/position = Vector3(0.015070438, -2.8945942, 0.036890443)
+bones/2/rotation = Quaternion(-0.05278639, 0.008200534, -0.004432592, 0.9985624)
+bones/2/scale = Vector3(1, 1, 1)
+
+[node name="Cylinder" type="MeshInstance3D" parent="KEISHI_WOMats/Armature/Skeleton3D"]
+transform = Transform3D(0.5121006, 0, 0, 0, 0.5121006, 0, 0, 0, 0.51210034, 0, 0, 0)
+mesh = ExtResource("2_gx1jg")
+skin = SubResource("Skin_qt0k6")
+blend_shapes/Open = 0.0
+surface_material_override/0 = ExtResource("3_ugbui")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KEISHI_WOMats"]
+libraries = {
+&"": SubResource("AnimationLibrary_60l7h")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="KEISHI_WOMats"]
+tree_root = SubResource("AnimationNodeBlendTree_wcoht")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "Idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+parameters/Jump/active = false
+parameters/Jump/internal_active = false
+parameters/Jump/request = 0
+parameters/GlideSTART/active = false
+parameters/GlideSTART/internal_active = false
+parameters/GlideSTART/request = 0
+
+[node name="TwistPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TwistPivot/PitchPivot/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_gmlin")
+surface_material_override/0 = SubResource("ShaderMaterial_lvxji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gmlin")
