@@ -3,6 +3,7 @@ extends PlayerState
 signal idle
 signal fall
 signal jump
+signal walk
 
 func _ready() -> void:
 	super()
@@ -11,12 +12,16 @@ func _ready() -> void:
 func enter_state():
 	super()
 
-func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("move_jump"):
-		jump.emit()
-	if actor.velocity.y < 0 and not actor.is_on_floor():
-		fall.emit()
+func _physics_process(_delta: float) -> void:
+	pass
 
 func on_animation_finished(anim_name):
 	if anim_name == "Land":
-		idle.emit()
+		if not actor.is_on_floor():
+			fall.emit()
+		elif Input.is_action_just_pressed("move_jump"):
+			jump.emit()
+		elif not actor.movement_input == Vector3.ZERO:
+			walk.emit()
+		else:
+			idle.emit()

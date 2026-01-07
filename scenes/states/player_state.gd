@@ -1,7 +1,7 @@
 extends State
 class_name PlayerState
 
-@export var anim_name: String
+@export var animation_name: String
 
 func _ready() -> void:
 	super()
@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func enter_state():
 	super()
-	if anim_name:
-		animator.play(anim_name)
+	if animation_name:
+		animator.play(animation_name)

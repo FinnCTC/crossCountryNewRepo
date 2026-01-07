@@ -10,6 +10,8 @@ extends CharacterBody3D
 @export var jump_state: PlayerState
 @export var fall_state: PlayerState
 @export var land_state: PlayerState
+@export var glide_state: PlayerState
+@export var walk_state: PlayerState
 
 @onready var camera = $TwistPivot/PitchPivot/Camera3D
 
@@ -45,15 +47,19 @@ func _ready() -> void:
 	jump_state.fall.connect(%StateMachine.change_state.bind(fall_state))
 	
 	fall_state.land.connect(%StateMachine.change_state.bind(land_state))
+	fall_state.glide.connect(%StateMachine.change_state.bind(glide_state))
 	
 	land_state.idle.connect(%StateMachine.change_state.bind(idle_state))
 	land_state.jump.connect(%StateMachine.change_state.bind(jump_state))
 	land_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	land_state.walk.connect(%StateMachine.change_state.bind(walk_state))
+	
+	glide_state.land.connect(%StateMachine.change_state.bind(land_state))
+	glide_state.fall.connect(%StateMachine.change_state.bind(fall_state))
 
 var jump_button_released = false
 
-func _process(delta: float) -> void:
-	
+func _process(_delta: float) -> void:
 	#MOVEMENT
 	
 	#Horizontal movement
@@ -101,8 +107,6 @@ func _process(delta: float) -> void:
 	
 	
 	#gravity
-	if not is_on_floor():
-		velocity.y -= gravity
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -131,5 +135,5 @@ func _unhandled_input(event: InputEvent) -> void:
 			pitch_input = - event.relative.y * mouse_sensitivity
 			$keishi_2/Armature/Skeleton3D/Cube.rotate_y(twist_input)
 
-func _on_oob_body_entered(body: Node3D) -> void:
+func _on_oob_body_entered(_body: Node3D) -> void:
 	get_tree().change_scene_to_file("res://scenes/placeholders/proto_land.tscn")

@@ -2,7 +2,7 @@ extends PlayerState
 
 @export var timer: Timer
 @export var jump_strength: int
-@export var jump_time: int
+@export var jump_time: float
 
 signal fall
 signal air_dash
@@ -18,7 +18,7 @@ func enter_state():
 	actor.velocity.y = jump_strength
 	timer.start()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not Input.is_action_pressed("move_jump"):
 		fall.emit()
 	if actor.velocity.y <= 0:

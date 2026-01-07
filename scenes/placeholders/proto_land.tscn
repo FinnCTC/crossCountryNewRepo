@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://6biqschifkkt"]
+[gd_scene load_steps=10 format=3 uid="uid://6biqschifkkt"]
 
 [ext_resource type="Script" uid="uid://bq4shlha20roq" path="res://scripts/proto_land.gd" id="1_82u04"]
 [ext_resource type="PackedScene" uid="uid://b64epfgyyd3n6" path="res://scenes/placeholders/proto_floor.tscn" id="2_ro8jj"]
 [ext_resource type="PackedScene" uid="uid://cgsd6gur8xyj1" path="res://scenes/player/player.tscn" id="3_ocwuw"]
 [ext_resource type="PackedScene" uid="uid://db80ed2tkylf" path="res://scenes/coin.tscn" id="4_st3lb"]
 [ext_resource type="PackedScene" uid="uid://bojrtj0jsmjf0" path="res://scenes/hud.tscn" id="5_hmnn0"]
-[ext_resource type="PackedScene" uid="uid://dfv0snyt7n5gv" path="res://scenes/enemies/basic_enemy.tscn" id="6_ro8jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqmma"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -66,8 +65,5 @@ shape = SubResource("BoxShape3D_kpixb")
 
 [node name="Player" parent="." instance=ExtResource("3_ocwuw")]
 transform = Transform3D(0.35994273, 0, -0.0064210757, 0, 0.36, 0, 0.0064210757, 0, 0.35994273, 0, 0.4478259, 0)
-
-[node name="BasicEnemy" parent="." instance=ExtResource("6_ro8jj")]
-transform = Transform3D(0.9999998, -0.00064577174, 0, 0.00064577174, 0.9999998, 0, 0, 0, 1, 1.243825, 1.3282042, 4.594576)
 
 [connection signal="body_entered" from="OOB" to="Player" method="_on_oob_body_entered"]
