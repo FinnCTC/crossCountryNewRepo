@@ -7,6 +7,6 @@ var debug_value = null
 
 var fanTime = false
 
-var fanRotation = 0.0
+var fanRotation = Vector3.ZERO
 
 var player_position := Vector3.ZERO

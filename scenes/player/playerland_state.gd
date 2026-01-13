@@ -13,7 +13,8 @@ func enter_state():
 	super()
 
 func _physics_process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("move_jump"):
+		jump.emit()
 
 func on_animation_finished(anim_name):
 	if anim_name == "Land":

@@ -17,10 +17,11 @@ func _process(_delta: float) -> void:
 	blades.rotate_y(deg_to_rad(rot_speed))
 
 func _on_body_entered(_body: Node3D) -> void:
-	var air_rotation = fan_air.global_rotation_degrees.z
+	var air_rotation = fan_air.global_rotation_degrees
 	if Input.is_action_pressed("move_jump"):
 		Global.fanTime = true
-		Global.fanRotation = air_rotation
+		Global.fanRotation = Vector3(rotation.x, 1, rotation.z)
+		print(Global.fanRotation)
 
 
 func _on_body_exited(_body: Node3D) -> void:

@@ -43,6 +43,7 @@ func _ready() -> void:
 	
 	idle_state.jump.connect(%StateMachine.change_state.bind(jump_state))
 	idle_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	idle_state.walk.connect(%StateMachine.change_state.bind(walk_state))
 	
 	jump_state.fall.connect(%StateMachine.change_state.bind(fall_state))
 	
@@ -56,6 +57,10 @@ func _ready() -> void:
 	
 	glide_state.land.connect(%StateMachine.change_state.bind(land_state))
 	glide_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	
+	walk_state.idle.connect(%StateMachine.change_state.bind(idle_state))
+	walk_state.jump.connect(%StateMachine.change_state.bind(jump_state))
+	walk_state.fall.connect(%StateMachine.change_state.bind(fall_state))
 
 var jump_button_released = false
 
@@ -87,7 +92,7 @@ func _process(_delta: float) -> void:
 	
 	#Glide ability
 	
-	#var glide_speed = -2
+	var glide_speed = -2
 	
 	
 	#if Input.is_action_pressed("move_jump") and not is_on_floor() and jump_button_released:
