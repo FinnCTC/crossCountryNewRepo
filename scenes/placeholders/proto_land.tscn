@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://6biqschifkkt"]
+[gd_scene load_steps=11 format=3 uid="uid://6biqschifkkt"]
 
 [ext_resource type="Script" uid="uid://bq4shlha20roq" path="res://scripts/proto_land.gd" id="1_82u04"]
 [ext_resource type="PackedScene" uid="uid://b64epfgyyd3n6" path="res://scenes/placeholders/proto_floor.tscn" id="2_ro8jj"]
 [ext_resource type="PackedScene" uid="uid://cgsd6gur8xyj1" path="res://scenes/player/player.tscn" id="3_ocwuw"]
 [ext_resource type="PackedScene" uid="uid://db80ed2tkylf" path="res://scenes/coin.tscn" id="4_st3lb"]
 [ext_resource type="PackedScene" uid="uid://bojrtj0jsmjf0" path="res://scenes/hud.tscn" id="5_hmnn0"]
-[ext_resource type="PackedScene" uid="uid://dr3y082606li7" path="res://scenes/enemies/ghost.tscn" id="5_ro8jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqmma"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -55,9 +54,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.172109, 2.2120786, 0)
 hud = NodePath("../../HUD")
 
 [node name="Enemies" type="Node3D" parent="."]
-
-[node name="ghost" parent="Enemies" instance=ExtResource("5_ro8jj")]
-transform = Transform3D(-0.29, 0, -4.378878e-08, 0, 0.29, 0, 4.378878e-08, 0, -0.29, 0, 0, -22.032406)
 
 [node name="OOB" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48.18347, 0)

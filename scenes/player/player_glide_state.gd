@@ -2,6 +2,7 @@ extends PlayerState
 
 signal land
 signal fall
+signal glide
 
 var glide_speed = -3
 
@@ -16,6 +17,9 @@ func enter_state():
 func _physics_process(delta: float) -> void:
 	if not Input.is_action_pressed("move_jump") or actor.is_on_floor():
 		animator.play("Glide_END")
+	
+	if Input.is_action_just_pressed("move_jump"):
+		glide.emit()
 		
 		
 	if Global.fanTime:
