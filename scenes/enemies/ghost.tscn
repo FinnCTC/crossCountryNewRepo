@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr3y082606li7"]
+
+[ext_resource type="Script" uid="uid://bhubwne47jat4" path="res://scripts/enimies/ghost.gd" id="1_i8s0f"]
+[ext_resource type="ArrayMesh" uid="uid://bnx1omvj34hu6" path="res://models/npcs/enemies/Ghost.res" id="1_lpin7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ly0wf"]
+radius = 1.0380859
+height = 2.0761719
+
+[node name="ghost" type="CharacterBody3D" groups=["Enemeys"]]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_i8s0f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_lpin7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70092773, 0)
+shape = SubResource("CapsuleShape3D_ly0wf")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

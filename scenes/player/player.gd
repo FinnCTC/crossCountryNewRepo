@@ -69,6 +69,7 @@ func _process(_delta: float) -> void:
 	
 	#Horizontal movement
 	
+	Global.player_position = position
 	movement_input.x = Input.get_axis("move_left", "move_right")
 	movement_input.z = Input.get_axis("move_foward", "move_back")
 	
