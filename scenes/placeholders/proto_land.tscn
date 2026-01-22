@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://6biqschifkkt"]
+[gd_scene load_steps=12 format=3 uid="uid://6biqschifkkt"]
 
 [ext_resource type="Script" uid="uid://bq4shlha20roq" path="res://scripts/proto_land.gd" id="1_82u04"]
 [ext_resource type="PackedScene" uid="uid://b64epfgyyd3n6" path="res://scenes/placeholders/proto_floor.tscn" id="2_ro8jj"]
 [ext_resource type="PackedScene" uid="uid://cgsd6gur8xyj1" path="res://scenes/player/player.tscn" id="3_ocwuw"]
 [ext_resource type="PackedScene" uid="uid://db80ed2tkylf" path="res://scenes/coin.tscn" id="4_st3lb"]
 [ext_resource type="PackedScene" uid="uid://bojrtj0jsmjf0" path="res://scenes/hud.tscn" id="5_hmnn0"]
+[ext_resource type="PackedScene" uid="uid://bsdy4m1wjv8xl" path="res://models/temp/temp_fan.tscn" id="6_ro8jj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqmma"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -72,5 +73,20 @@ navigation_mesh = SubResource("NavigationMesh_ro8jj")
 
 [node name="ProtoFloor" parent="NavigationRegion3D/Enviroment" instance=ExtResource("2_ro8jj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="Obstacle Course" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Obstacle Course"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.92998, 0, -0.5659809)
+use_collision = true
+size = Vector3(16.421997, 1, 12.882935)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/Obstacle Course"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.67705, 0, -0.9187374)
+use_collision = true
+size = Vector3(3, 1, 3)
+
+[node name="TempFan" parent="NavigationRegion3D/Obstacle Course" instance=ExtResource("6_ro8jj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 50.171734, 0.9708996, -0.9735291)
 
 [connection signal="body_entered" from="OOB" to="Player" method="_on_oob_body_entered"]

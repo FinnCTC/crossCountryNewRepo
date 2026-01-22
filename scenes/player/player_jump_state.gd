@@ -29,4 +29,5 @@ func _physics_process(_delta: float) -> void:
 		fast_fall.emit()
 
 func on_timer_timeout():
-	fall.emit()
+	if in_state:
+		fall.emit()

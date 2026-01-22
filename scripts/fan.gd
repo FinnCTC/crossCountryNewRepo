@@ -21,7 +21,6 @@ func _on_body_entered(_body: Node3D) -> void:
 	if Input.is_action_pressed("move_jump"):
 		Global.fanTime = true
 		Global.fanRotation = Vector3(rotation.x, 1, rotation.z)
-		print(Global.fanRotation)
 
 
 func _on_body_exited(_body: Node3D) -> void:

@@ -41,26 +41,26 @@ var default_node_signals = ["ready", "renamed", "tree_entered", "tree_exiting", 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	idle_state.jump.connect(%StateMachine.change_state.bind(jump_state))
-	idle_state.fall.connect(%StateMachine.change_state.bind(fall_state))
-	idle_state.walk.connect(%StateMachine.change_state.bind(walk_state))
+	idle_state.jump.connect(%StateMachine.change_state.bind(jump_state, "idle_state"))
+	idle_state.fall.connect(%StateMachine.change_state.bind(fall_state, "idle_state"))
+	idle_state.walk.connect(%StateMachine.change_state.bind(walk_state, "idle_state"))
 	
-	jump_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	jump_state.fall.connect(%StateMachine.change_state.bind(fall_state, "jump_state"))
 	
-	fall_state.land.connect(%StateMachine.change_state.bind(land_state))
-	fall_state.glide.connect(%StateMachine.change_state.bind(glide_state))
+	fall_state.land.connect(%StateMachine.change_state.bind(land_state, "fall_state"))
+	fall_state.glide.connect(%StateMachine.change_state.bind(glide_state, "fall_state"))
 	
-	land_state.idle.connect(%StateMachine.change_state.bind(idle_state))
-	land_state.jump.connect(%StateMachine.change_state.bind(jump_state))
-	land_state.fall.connect(%StateMachine.change_state.bind(fall_state))
-	land_state.walk.connect(%StateMachine.change_state.bind(walk_state))
+	land_state.idle.connect(%StateMachine.change_state.bind(idle_state, "land_state"))
+	land_state.jump.connect(%StateMachine.change_state.bind(jump_state, "land_state"))
+	land_state.fall.connect(%StateMachine.change_state.bind(fall_state, "land_state"))
+	land_state.walk.connect(%StateMachine.change_state.bind(walk_state, "land_state"))
 	
-	glide_state.land.connect(%StateMachine.change_state.bind(land_state))
-	glide_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	glide_state.land.connect(%StateMachine.change_state.bind(land_state, "glide_state"))
+	glide_state.fall.connect(%StateMachine.change_state.bind(fall_state, "glide_state"))
 	
-	walk_state.idle.connect(%StateMachine.change_state.bind(idle_state))
-	walk_state.jump.connect(%StateMachine.change_state.bind(jump_state))
-	walk_state.fall.connect(%StateMachine.change_state.bind(fall_state))
+	walk_state.idle.connect(%StateMachine.change_state.bind(idle_state, "walk_state"))
+	walk_state.jump.connect(%StateMachine.change_state.bind(jump_state, "walk_state"))
+	walk_state.fall.connect(%StateMachine.change_state.bind(fall_state, "walk_state"))
 
 var jump_button_released = false
 
