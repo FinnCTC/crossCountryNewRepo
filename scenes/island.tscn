@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1qi30n7oslkv"]
+
+[ext_resource type="ArrayMesh" uid="uid://fdtmgh1nyv2l" path="res://models/island.res" id="1_2v8eh"]
+
+[node name="Island" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, 90, -71)
+
+[node name="Island" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4749756, 0, 0.32470703)
+mesh = ExtResource("1_2v8eh")
